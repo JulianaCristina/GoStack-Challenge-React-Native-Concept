@@ -36,11 +36,11 @@ export default function App() {
         <FlatList style={styles.repositoryContainer}
           data = {repositories}
           KeyExtractor={repositories => repositories.id}
-          renderItem = {({item})=> (
+          renderItem = {({item: repository})=> (
               <>
-                <Text style={styles.repository}>{item.title}</Text>
+                <Text style={styles.repository}>{repository.title}</Text>
                 <View style={styles.techsContainer}>
-                  {item.techs.map(name =>
+                  {repository.techs.map(name =>
                       <Text style={styles.tech} key={name}>
                         {name}
                       </Text>
@@ -52,18 +52,18 @@ export default function App() {
                   <Text
                       style={styles.likeText}
                       // Remember to replace "1" below with repository ID: {`repository-likes-${repository.id}`}
-                      testID={`repository-likes-${item.id}`}
+                      testID={`repository-likes-${repository.id}`}
                   >
-                    {item.likes} curtidas
+                    {repository.likes} curtidas
                   </Text>
                 </View>
 
                 <TouchableOpacity
                     style={styles.button}
                     activeOpacity={0.6}
-                    onPress={() => handleLikeRepository(item.id)}
+                    onPress={() => handleLikeRepository(repository.id)}
                     // Remember to replace "1" below with repository ID: {`like-button-${repository.id}`}
-                    testID={`like-button-{repositories.id}`}
+                    testID={`like-button-${repository.id}`}
                 >
                   <Text style={styles.buttonText}>Curtir</Text>
                 </TouchableOpacity>
